@@ -36,17 +36,19 @@ jobs:
 
       # 3. Run all tests defined in your testng.xml
       - name: Run Multi-Browser Tests
-        run: mvn clean test -DsuiteXmlFile=testng.xml
-
         env:
           ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+        # ONLY ONE 'run' command allowed here
         run: mvn clean test -DsuiteXmlFile=testng.xml
 
-      # 4. Collect Artifacts (Even if tests fail)s
+      # 4. Collect Artifacts (Even if tests fail)
       - name: Upload Extent Reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: Selenium-Test-Reports
-          path: Selpractise/reports/index.html 
+          # Ensure this path is correct relative to the root of your repo
+          path: Selpractise/reports/
+          # Optional: prevents failure if the report wasn't generated
+          if-no-files-found: warn 
           retention-days: 5
