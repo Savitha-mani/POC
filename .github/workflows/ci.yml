@@ -45,5 +45,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Selenium-Test-Reports
-          path: reports/index.html # Ensure this matches your ExtentReport path
+          path: Selpractise/reports/index.html 
           retention-days: 5
