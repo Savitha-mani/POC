@@ -11,6 +11,7 @@ jobs:
   automation-tests:
 
     runs-on: ubuntu-latest
+ 
 
     steps:
       - name: Checkout Code
@@ -35,6 +36,10 @@ jobs:
 
       # 3. Run all tests defined in your testng.xml
       - name: Run Multi-Browser Tests
+        run: mvn clean test -DsuiteXmlFile=testng.xml
+
+        env:
+          ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
         run: mvn clean test -DsuiteXmlFile=testng.xml
 
       # 4. Collect Artifacts (Even if tests fail)s
